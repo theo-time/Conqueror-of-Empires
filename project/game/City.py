@@ -1,3 +1,5 @@
+import constants
+
 class City:
     def __init__(self, name, position):
         self.type = "c"

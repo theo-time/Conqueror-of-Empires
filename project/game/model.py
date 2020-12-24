@@ -3,10 +3,9 @@
 import random
 import paths
 import constants
-import project.game.Unit as Unit
-import project.game.World as World
-import project.game.City as City
-import project.game.Tile as Tile
+from project.game.Unit import Unit
+from project.game.World import World
+
 
 import project.game.calculations as calculations
 
@@ -260,35 +259,6 @@ class Player:
 
 
 
-def get_world(map_name):
-    # Reading in the map from a .csv file, convert to list of strings.
-    with open(paths.mapPath + map_name + ".csv", "r") as file:
-        grid = file.read().split("\n")
-        grid = [i.replace(",", "") for i in grid]
 
-    # Converting for referencing as [row][col] as split by "/n" gives [col][row]
-    new_grid = []
-    for row in range(constants.MAP_SIZE[0]):
-        new_grid.append([])
-        for col in grid:
-            new_grid[len(new_grid) - 1].append(col[row])
-
-    return new_grid
-
-
-
-
-
-class CityPicker:
-    """ used to randomly assign names to cities """
-    def __init__(self):
-        # Load Name Choices
-        with open(paths.dataPath + "city_names") as file:
-            self.name_choices = file.read().split("\n")
-
-    def get_new(self):
-        choice = random.choice(self.name_choices)
-        self.name_choices.remove(choice)
-        return choice
 
 
